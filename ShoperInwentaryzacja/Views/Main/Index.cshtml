@@ -1,0 +1,21 @@
+﻿@using ShoperInwentaryzacja.Entities
+@model List<UsersShoperToken> 
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopUrl)<br />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpireDate)<br />
+            </td>
+            <td>
+                <a href="/main?shopid=@item.Id">
+                    <a href="https://localhost:5001/main/Inventory?ShopId=@item.Id">Wybierz</a>
+                </a>
+            </td>
+        </tr>
+    }
+</table>

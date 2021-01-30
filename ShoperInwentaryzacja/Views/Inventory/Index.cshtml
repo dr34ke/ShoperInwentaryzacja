@@ -1,0 +1,48 @@
+﻿@model Tuple<List<ShoperItem>,ShoperItem>;
+
+@{
+    ViewData["title"] = "Formularz Ajax";
+}
+
+@using (Html.BeginForm())
+
+
+{
+    <div id="success-alert" class="alert alert-success" style="display: none"> Element Dodany </div>
+    <form method="post" id="form">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Item2.Sku, "Company Name")
+            @Html.TextBoxFor(x => x.Item2.Sku, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add Company</button>
+        </div>
+    </form>
+
+}
+<table id="results">
+    @foreach(ShoperItem shoperItem in Model.Item1)
+    {
+    <tr>
+        <td>
+            @shoperItem.Name
+        </td>
+        <td>
+            @shoperItem.Price
+        </td>
+        <td>
+            @shoperItem.Sku
+        </td>
+        <td>
+            @shoperItem.ExpectedStock
+        </td>
+        <td>
+            @shoperItem.Stock
+        </td>
+    </tr>
+    };
+</table>
+@section Scripts{
+    <script src="~/js/AjaxAddItem.js"></script>
+
+}

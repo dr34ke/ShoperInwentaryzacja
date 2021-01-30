@@ -1,0 +1,58 @@
+﻿@using ShoperInwentaryzacja.Entities
+@using ShoperInwentaryzacja.Models
+@model dynamic
+<form class="hidden" action="/main/AddInventory" method="get">
+    <input type="hidden" name="ShopId" value="@Model.shopid"/>
+    <label for="Name"> Nazwa:</label>
+    <input type="text" name="Name" />
+    <label for="Option"> Tryb pracy:</label>
+    <select name="Option" id="Option">
+        <option value="SKU">Sku</option>
+        <option value="Category">Kategoria</option>
+        <option value="Caegory&SKU">Kategoria + Sku</option>
+    </select>
+    <label for="Categories"> Kategoria:</label>
+    <select name="Category" id="Categories">
+        @foreach (Category item in Model.categories.list)
+        {
+        <option value="@item.category_id">@item.translations.pl_PL.name</option>
+        }
+    </select>
+    <label for="SKU"> Sku:</label>
+    <input type="text" name="SKU" />
+    <input type="submit" />
+</form>
+@if (@Model.inventories.Count == 0)
+{
+    <h1> Niestety nie masz jesze przeprowadzonych inwentrayzacji:(</h1>
+    <button onclick="showForm()"> Dodaj Teraz! </button>
+}
+else
+{
+<table>
+    
+    @foreach(Inventories inventory in Model.inventories)
+    {
+    <tr>
+        <td>
+            @inventory.ShopUrl
+        </td>
+        <td>
+            @inventory.Name
+        </td>
+        <td>
+            @inventory.Option
+        </td>
+        <td>
+            @inventory.Sku
+        </td>
+        <td>
+            @inventory.Category
+        </td>
+        <td>
+            <a href="https://localhost:5001/Inventory?ShopId=@inventory.ShopId&InventoryId=@inventory.Id">Wybierz</a>
+        </td>
+    </tr>
+    }
+</table>    
+}

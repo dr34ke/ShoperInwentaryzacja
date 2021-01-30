@@ -10,6 +10,9 @@ using RestSharp;
 using ShoperInwentaryzacja.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using ShoperInwentaryzacja.Database;
+using ShoperInwentaryzacja.Entities;
+using System.Security.Claims;
 
 namespace ShoperInwentaryzacja.Controllers
 {
@@ -17,21 +20,25 @@ namespace ShoperInwentaryzacja.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _singInManager;
+        private readonly AppDbContext _dbContext;
 
-        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> singInManager)
+        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> singInManager, AppDbContext appDbContext)
         {
             _userManager = userManager;
             _singInManager = singInManager;
+            _dbContext = appDbContext;
         }
         public IActionResult Index()
         {
             return View();
         }
+       
         [Authorize]
-        public IActionResult tajne()
+        public IActionResult CheckShoperToken()
         {
             return View();
         }
+        
         public IActionResult Authenticate()
         {
             return RedirectToAction("Index");

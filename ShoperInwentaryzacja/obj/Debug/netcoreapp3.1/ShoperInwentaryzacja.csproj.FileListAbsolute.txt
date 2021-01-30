@@ -82,4 +82,8 @@ C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
-C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Home\tajne.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Main\Index.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Main\AddShoperToken.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Main\Inventory.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Main\Inventories.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Debug\netcoreapp3.1\Razor\Views\Inventory\Index.cshtml.g.cs

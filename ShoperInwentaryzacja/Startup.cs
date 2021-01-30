@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using ShoperInwentaryzacja.Database;
 using Microsoft.AspNetCore.Identity;
 using ShoperInwentaryzacja.Entities;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace ShoperInwentaryzacja
 {
@@ -47,6 +49,10 @@ namespace ShoperInwentaryzacja
                 config.Cookie.Name = "Indentity";
                 config.LoginPath = "/Home/Login";
             });
+            /*services.AddAuthorization(config =>
+            {
+                
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
