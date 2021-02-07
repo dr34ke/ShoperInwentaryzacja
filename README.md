@@ -1,5 +1,5 @@
 # ShoperInwentaryzacja
-To prosta darmowa aplikacja, wspomagajaca działanie sklepu na platformie [Shoper.pl](http://shoper.pl). Jej głównym i w zasadzie jedynym zadaniem jest przeprowadzanie inwentaryzacji magazynów aplikacji sklepu internetowego i zmiana stanow magazynowych na te odzwierciedlajace rzeczywiste ilości posiadanych produktów. Do poprawnego działania wymagany jest SQL Server.
+To prosta darmowa aplikacja opierająca się na technologii ASP .NET oraz Javascript, wspomagajaca działanie sklepu na platformie [Shoper.pl](http://shoper.pl). Jej głównym i w zasadzie jedynym zadaniem jest przeprowadzanie inwentaryzacji magazynów aplikacji sklepu internetowego i zmiana stanow magazynowych na te odzwierciedlajace rzeczywiste ilości posiadanych produktów. Do poprawnego działania wymagany jest SQL Server.
 
 ## Strona główna
 Na stronie głównej zalogowany użytkownik ma podgląd swoich dodanych sklepów oraz datę wygaśnięcia tokenu aplikacji.
