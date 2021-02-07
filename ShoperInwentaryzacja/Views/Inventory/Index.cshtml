@@ -1,48 +1,62 @@
-﻿@model Tuple<List<ShoperItem>,ShoperItem>;
+﻿@model Tuple<List<ShoperItem>, ShoperItem, string, string>;
 
 @{
     ViewData["title"] = "Formularz Ajax";
 }
 
-@using (Html.BeginForm())
-
-
+@{
+    var parms = new Dictionary<string, string>
 {
-    <div id="success-alert" class="alert alert-success" style="display: none"> Element Dodany </div>
+        { "shopId", Model.Item3.ToString() },
+        { "inventoryId", Model.Item4.ToString() }
+    };
+}
+<a role="button" class="btn btn-primary" asp-action="GenerateReport" asp-all-route-data="parms">Generuj sprawozdanie</a>
+@using (Html.BeginForm())
+{
     <form method="post" id="form">
         <div class="form-group">
-            @Html.LabelFor(x => x.Item2.Sku, "Company Name")
+            @Html.LabelFor(x => x.Item2.Sku, "SKU:")
             @Html.TextBoxFor(x => x.Item2.Sku, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Add Company</button>
+            <button type="submit" class="btn btn-primary">Dodaj do listy</button>
         </div>
     </form>
-
 }
-<table id="results">
-    @foreach(ShoperItem shoperItem in Model.Item1)
-    {
-    <tr>
-        <td>
-            @shoperItem.Name
-        </td>
-        <td>
-            @shoperItem.Price
-        </td>
-        <td>
-            @shoperItem.Sku
-        </td>
-        <td>
-            @shoperItem.ExpectedStock
-        </td>
-        <td>
-            @shoperItem.Stock
-        </td>
-    </tr>
-    };
+<table id="results" class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Tytuł oferty
+            </th>
+            <th>
+                Cena
+            </th>
+            <th>
+                Ilość w magazynie
+            </th>
+            <th>
+                Ilość w systemie
+            </th>
+            <th>
+                SKU
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
 </table>
+
 @section Scripts{
     <script src="~/js/AjaxAddItem.js"></script>
 
+}
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
 }

@@ -49,6 +49,7 @@ namespace ShoperInwentaryzacja
                 config.Cookie.Name = "Indentity";
                 config.LoginPath = "/Home/Login";
             });
+
             /*services.AddAuthorization(config =>
             {
                 

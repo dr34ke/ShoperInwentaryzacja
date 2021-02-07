@@ -72,3 +72,6 @@ body {
 .hidden{
     display: none;
 }
+.btn{
+    margin-bottom: 10px;
+}

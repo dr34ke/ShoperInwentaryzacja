@@ -7,6 +7,7 @@ namespace ShoperInwentaryzacja.Models
 {
     public class ShoperProductResponse
     {
+        public string pages { get; set; }
         public List<ShoperProduct> list { get; set; }
     }
     public class ShoperProduct

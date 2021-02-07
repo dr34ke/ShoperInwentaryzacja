@@ -1,0 +1,39 @@
+﻿@model List<ReportResult>
+
+<table id="items" class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id produktu</th>
+            <th>Stan magazynowy</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (ReportResult result in Model)
+        {
+            <tr>
+                <td>
+                    @result.id
+                </td>
+                <td>
+                    @result.stock
+                </td>
+                <td>
+                    @if(result.set=="true")
+                    {
+                        <span>Dokonano zmian!</span>
+                    }
+                    else
+                    {
+                        <span>Nie dokonano zmian :(</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
+}

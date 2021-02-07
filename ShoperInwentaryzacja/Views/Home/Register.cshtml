@@ -1,10 +1,30 @@
-﻿<h1> Login Page </h1>
-<div class="text-center">
-    <div>
-        <form action="/Home/Register" method="Post">
-            <input type="text" name="username" />
-            <input type="text" name="password" />
-            <input type="submit" />
-        </form>
+﻿
+<div class="text-center container">
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="text-uppercase text-right">Uzyskaj bezpłatny dostęp:</h1>
+        </div>
+        <div class="col-sm">
+            <form action="/Home/Register" method="Post">
+                <label for="username" class="form-label">Login</label>
+                <input type="text" name="username" id="username" class="form-control">
+
+                <label for="password" class="form-label">Hasło</label>
+                <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <input type="submit" class="btn btn-primary" />
+            </form>
+        </div>
+        <div class="col-sm">
+
+        </div>
     </div>
 </div>
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Zaloguj się!</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Zarejestruj się!</a>
+    </li>
+}

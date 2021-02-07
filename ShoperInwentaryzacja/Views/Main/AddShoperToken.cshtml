@@ -1,7 +1,30 @@
 ﻿@model LoginDetails
-<form action="/Home/AddShoperToken" method="post">
-    <input type="text" name="Name" />
-    <input type="password" name="Password" />
-    <input type="text" name="ShopUrl" />
-    <input type="submit" />
-</form>
+
+<div class="text-center container">
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="text-uppercase text-right"> Dodaj swój sklep:</h1>
+        </div>
+        <div class="col-sm">
+            <form action="/Main/AddShoperToken" method="Post">
+                <label for="Name" class="form-label">Login</label>
+                <input type="text" name="Name" id="Name" class="form-control">
+
+                <label for="password" class="form-label">Hasło</label>
+                <input type="password" name="Password" id="password" class="form-control" aria-describedby="passwordHelpBlock">
+
+                <label for="ShopUrl" class="form-label">URL sklepu("examle.pl")</label>
+                <input type="text" name="ShopUrl" id="ShopUrl" class="form-control">
+                <input type="submit" class="btn btn-primary" />
+            </form>
+        </div>
+        <div class="col-sm">
+
+        </div>
+    </div>
+</div>
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
+}

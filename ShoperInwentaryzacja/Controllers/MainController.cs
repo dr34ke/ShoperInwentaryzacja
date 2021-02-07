@@ -25,7 +25,7 @@ namespace ShoperInwentaryzacja.Controllers
             _singInManager = singInManager;
             _dbContext = appDbContext;
         }
-        [Authorize, Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
@@ -38,34 +38,35 @@ namespace ShoperInwentaryzacja.Controllers
         {
             ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
             var UserId = _userManager.GetUserId(principal);
-            dynamic models = new ExpandoObject();
             UsersShoperToken shop = _dbContext.ShoperToken.First<UsersShoperToken>(x => (x.UserID == UserId && x.Id == Int32.Parse(ShopId)));
-            List<Inventories> inventories = _dbContext.Inventories.Where<Inventories>( x => (x.UserID == UserId && x.ShopUrl==shop.ShopUrl)).ToList<Inventories>();
-            models.inventories = inventories;
+            List<Inventories> inventories = _dbContext.Inventories.Where<Inventories>( x => (x.UserID == UserId && x.ShopId==ShopId)).ToList<Inventories>();
             ShopCategories shopCategories = await ShopCategories.GetCategories(shop.ShopUrl, shop.Token);
-            models.categories = shopCategories;
-            models.shopid = ShopId;
-            return View("Inventories", models);
+            Tuple<ShopCategories, string, List<Inventories>> tuple = new Tuple<ShopCategories, string, List<Inventories>>(shopCategories, ShopId, inventories);
+            return View("Inventories", tuple);
         }
         [HttpGet, Authorize]
-        public IActionResult AddInventory(string ShopId, string Name, string SKU, string Option, string Category)
+        public async Task<IActionResult> AddInventory(string ShopId, string Name, string SKU, string Option, string Category)
         {
             ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
             var UserId = _userManager.GetUserId(principal);
             UsersShoperToken shop = _dbContext.ShoperToken.First<UsersShoperToken>(x => (x.UserID == UserId && x.Id == Int32.Parse(ShopId)));
             Inventories inventories = new Inventories()
             {
-                ShopUrl =shop.ShopUrl,
+                ShopUrl = shop.ShopUrl,
                 Sku = SKU,
-                Category =Category,
+                Category = Category,
                 Name = Name,
-                Option =Option,
-                UserID = UserId
+                Option = Option,
+                UserID = UserId,
+                ShopId = ShopId,
+                Status = "Otwarta"
             };
             _dbContext.Inventories.Add(inventories);
             _dbContext.SaveChanges();
-
-            return View("Inventories", ShopId);
+            List<Inventories> _inventories = _dbContext.Inventories.Where<Inventories>(x => (x.UserID == UserId && x.ShopId == ShopId)).ToList<Inventories>();
+            ShopCategories shopCategories = await ShopCategories.GetCategories(shop.ShopUrl, shop.Token);
+            Tuple<ShopCategories, string, List<Inventories>> tuple = new Tuple<ShopCategories, string, List<Inventories>>(shopCategories, ShopId, _inventories);
+            return View("Inventories",tuple);
         }
         public IActionResult AddShoperToken()
         {
@@ -93,7 +94,7 @@ namespace ShoperInwentaryzacja.Controllers
                 };
                 _dbContext.ShoperToken.Add(shoperToken);
                 _dbContext.SaveChanges();
-                return RedirectToAction("ShoperTokenAdded");
+                return RedirectToAction("Index");
             }
             return RedirectToAction("AddShoperToken");
         }

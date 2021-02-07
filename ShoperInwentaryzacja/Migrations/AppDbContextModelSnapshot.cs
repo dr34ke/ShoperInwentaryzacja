@@ -240,6 +240,9 @@ namespace ShoperInwentaryzacja.Migrations
                     b.Property<string>("Sku")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(max)");
 

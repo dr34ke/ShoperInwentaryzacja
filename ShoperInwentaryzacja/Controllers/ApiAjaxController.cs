@@ -61,13 +61,38 @@ namespace ShoperInwentaryzacja.Controllers
             return shoperItem;
         }
 
+
         [HttpGet("GetItems")]
-        public List<Inventory> Items(string InventoryId)
+        public async Task<List<ShoperItem>> Items(string InventoryId, string shopId)
         {
             ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
             var UserId = _userManager.GetUserId(principal);
-            List<Inventory> inventory = _dbContext.Inventory.Where<Inventory>(x => x.InventoryId == Int32.Parse(InventoryId)).ToList<Inventory>();
-            return inventory;
+            UsersShoperToken shop = _dbContext.ShoperToken.First<UsersShoperToken>(x => (x.Id == Int32.Parse(shopId)));
+            List<Inventory> inventories = _dbContext.Inventory.Where<Inventory>(x => x.InventoryId == Int32.Parse(InventoryId)).ToList<Inventory>();
+            string skus = "";
+            foreach (Inventory inv in inventories)
+            {
+                skus += "\"" + inv.Sku + "\",";
+            }
+            List<ShoperItem> items = await ShoperItem.GetListAsync(shop.Token, shop.ShopUrl, skus.TrimEnd(','), inventories);
+            return items;
+        }
+
+        [HttpGet("SetCounter")]
+        public async Task<bool> SetCounter(string InventoryId, string shopId, string sku, int value)
+        {
+            Inventory inventory = _dbContext.Inventory.SingleOrDefault<Inventory>(x => (x.Sku.ToLower() == sku.ToLower() && x.InventoryId == Int32.Parse(InventoryId)));
+            var response = new AjaxModel();
+            if (inventory == null)
+            {
+                return false;
+            }
+            else
+            {
+                inventory.Counter = value;
+                _dbContext.SaveChanges();
+                return true;
+            }
         }
     }
 

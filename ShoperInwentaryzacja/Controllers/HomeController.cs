@@ -30,6 +30,12 @@ namespace ShoperInwentaryzacja.Controllers
         }
         public IActionResult Index()
         {
+            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;
+            var UserId = _userManager.GetUserId(principal);
+            if (UserId!=null)
+            {
+                return RedirectToAction("Index", "Main");
+            }
             return View();
         }
        

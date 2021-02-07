@@ -1,0 +1,47 @@
+﻿@model List<ReportOfChanges>
+<button class="btn btn-primary" id="accept">Zmień stan magazynowy(uwaga, utracisz możliwośćkontynuacji inwentaryzacji)</button>
+<table id="items" class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id produktu</th>
+            <th>SKU</th>
+            <th>Różnica</th>
+            <th>Stan faktyczny</th>
+            <th>Tytuł oferty</th>
+        </tr>
+    </thead>
+    <tbody class="table-striped">
+        @foreach (ReportOfChanges reportOfChanges in Model)
+        {
+            <tr class="@reportOfChanges.sku.Trim(' ')">
+                <td class="id"> @reportOfChanges.product_id</td>
+                <td class="sku">@reportOfChanges.sku.Trim(' ')</td>
+                @if (reportOfChanges.difference_of_stock > 0)
+                {
+                    <td class="difference_of_stock">@reportOfChanges.difference_of_stock</td>
+                }
+                else if (@reportOfChanges.difference_of_stock == 0)
+                {
+                    <td class="difference_of_stock">@reportOfChanges.difference_of_stock</td>
+                }
+                else
+                {
+                    <td class="difference_of_stock">@reportOfChanges.difference_of_stock</td>
+                }
+                <td class="realStock">@reportOfChanges.realStock</td>
+                <td class="name">@reportOfChanges.name</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/changeStock.js" type="text/javascript"></script>
+
+}
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
+}

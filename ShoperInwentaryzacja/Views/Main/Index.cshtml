@@ -1,21 +1,50 @@
 ﻿@using ShoperInwentaryzacja.Entities
-@model List<UsersShoperToken> 
+@model List<UsersShoperToken>
 
-<table>
-    @foreach (var item in Model)
-    {
+<a asp-action="AddShoperToken" role="button" class="btn btn-primary">Dodaj nowy sklep</a>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShopUrl)<br />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpireDate)<br />
-            </td>
-            <td>
-                <a href="/main?shopid=@item.Id">
-                    <a href="https://localhost:5001/main/Inventory?ShopId=@item.Id">Wybierz</a>
-                </a>
-            </td>
+            <th>
+                Nazwa Sklepu
+            </th>
+
+            <th>
+                Data Wygaśnięcia Tokenu
+            </th>
+            <th>
+
+            </th>
         </tr>
-    }
+    </thead>
+    <tbody class="table-striped">
+        @foreach (var item in Model)
+        {
+            var parms = new Dictionary<string, string>
+    {
+                { "shopId", item.Id.ToString()}
+            };
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopUrl)<br />
+                </td>
+                <td>
+                    @{
+                        DateTime date = DateTime.MinValue;
+                        date = date.AddSeconds(long.Parse(item.ExpireDate.Split(',')[0]));
+                    }
+                    @date
+                </td>
+                <td>
+                    <a role="button" class="btn btn-primary" asp-action="Inventory" asp-all-route-data="parms">Wybierz</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
+}

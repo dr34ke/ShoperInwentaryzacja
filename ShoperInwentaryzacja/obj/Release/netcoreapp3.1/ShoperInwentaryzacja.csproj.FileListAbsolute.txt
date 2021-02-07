@@ -85,5 +85,14 @@ C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\ShoperInwentaryzacja.pdb
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\ShoperInwentaryzacja.genruntimeconfig.cache
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\Razor\Views\Inventory\Index.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\MimeKit.dll
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\ShoperInwentaryzacja.csproj.CoreCompileInputs.cache
 C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\ShoperInwentaryzacja.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\System.Web.Http.dll
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\reports\shop1inventory1.json
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\Razor\Views\Inventory\ReadReport.cshtml.g.cs
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\bin\Release\netcoreapp3.1\reports\acceptedshop1inventory1.json
+C:\Users\Dariusz Kubacki\source\repos\ShoperInwentaryzacja\ShoperInwentaryzacja\obj\Release\netcoreapp3.1\Razor\Views\Inventory\ChangeStock.cshtml.g.cs

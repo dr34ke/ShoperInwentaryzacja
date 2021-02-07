@@ -15,5 +15,6 @@ namespace ShoperInwentaryzacja.Entities
         public string Option { get; set; }
         public string Sku { get; set; }
         public string Category { get; set; }
+        public string Status { get; set; }
     }
 }

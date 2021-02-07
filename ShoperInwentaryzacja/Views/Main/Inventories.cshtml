@@ -1,58 +1,111 @@
 ﻿@using ShoperInwentaryzacja.Entities
 @using ShoperInwentaryzacja.Models
-@model dynamic
-<form class="hidden" action="/main/AddInventory" method="get">
-    <input type="hidden" name="ShopId" value="@Model.shopid"/>
-    <label for="Name"> Nazwa:</label>
-    <input type="text" name="Name" />
-    <label for="Option"> Tryb pracy:</label>
-    <select name="Option" id="Option">
-        <option value="SKU">Sku</option>
-        <option value="Category">Kategoria</option>
-        <option value="Caegory&SKU">Kategoria + Sku</option>
-    </select>
-    <label for="Categories"> Kategoria:</label>
-    <select name="Category" id="Categories">
-        @foreach (Category item in Model.categories.list)
-        {
-        <option value="@item.category_id">@item.translations.pl_PL.name</option>
-        }
-    </select>
-    <label for="SKU"> Sku:</label>
-    <input type="text" name="SKU" />
-    <input type="submit" />
-</form>
-@if (@Model.inventories.Count == 0)
+@model Tuple<ShopCategories, string, List<Inventories>>
+    <div class="text-center container">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+                <form class="hidden" action="/main/AddInventory" method="get">
+
+                    <input type="hidden" name="ShopId" value="@Model.Item2"  />
+                    <label for="Name" class="form-label"> Nazwa:</label>
+                    <input type="text" name="Name" id="Name" class="form-control"/>
+                    <label for="Option" class="form-label"> Tryb pracy:</label>
+                    <select name="Option" id="Option" class="form-control">
+                        <option value="SKU">Sku</option>
+                        <option value="Category">Kategoria</option>
+                        <option value="Category&SKU">Kategoria + Sku</option>
+                    </select>
+                    <label for="Categories" class="form-label"> Kategoria:</label>
+                    <select name="Category" id="Categories" class="form-control">
+                        @foreach (Category item in Model.Item1.list)
+                        {
+                            <option value="@item.category_id">@item.translations.pl_PL.name</option>
+                        }
+                    </select>
+                    <label for="SKU" class="form-label">Sku:</label>
+                    <input type="text" name="SKU" id="SKU" class="form-control"/>
+                    <input type="submit" class=" btn btn-primary"/>
+                </form>
+            </div>
+            <div class="col-sm">
+
+            </div>
+        </div>
+    </div>
+
+<button onclick="showForm()" class="addNewBtn btn btn-primary"> Dodaj nową inwentaryzacje </button>
+@if (@Model.Item3.Count == 0)
 {
     <h1> Niestety nie masz jesze przeprowadzonych inwentrayzacji:(</h1>
-    <button onclick="showForm()"> Dodaj Teraz! </button>
+    <button onclick="showForm()" class="btn btn-primary"> Dodaj Teraz! </button>
 }
 else
 {
-<table>
-    
-    @foreach(Inventories inventory in Model.inventories)
-    {
-    <tr>
-        <td>
-            @inventory.ShopUrl
-        </td>
-        <td>
-            @inventory.Name
-        </td>
-        <td>
-            @inventory.Option
-        </td>
-        <td>
-            @inventory.Sku
-        </td>
-        <td>
-            @inventory.Category
-        </td>
-        <td>
-            <a href="https://localhost:5001/Inventory?ShopId=@inventory.ShopId&InventoryId=@inventory.Id">Wybierz</a>
-        </td>
-    </tr>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Tryb
+                </th>
+                <th>
+                    Formant Sku
+                </th>
+                <th>
+                    Kategoria
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-striped">
+
+
+            @foreach (Inventories inventory in Model.Item3)
+            {
+                var parms = new Dictionary<string, string>
+{
+                    { "shopId", inventory.ShopId.ToString() },
+                    { "inventoryId", inventory.Id.ToString() }
+            };
+        <tr>
+            <td>
+                @inventory.Name
+            </td>
+            <td>
+                @inventory.Option
+            </td>
+            <td>
+                @inventory.Sku
+            </td>
+            <td>
+                @inventory.Category
+            </td>
+            <td>
+                @inventory.Status
+            </td>
+            <td>
+                <a asp-controller="Inventory" asp-action="" asp-all-route-data="parms" class="btn btn-primary">Wybierz</a>
+            </td>
+
+        </tr>
     }
-</table>    
+        </tbody>
+    </table>
+}
+@section Scripts{
+    <script src="~/js/site.js"></script>
+}
+@section Items{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Wyloguj</a>
+    </li>
 }
